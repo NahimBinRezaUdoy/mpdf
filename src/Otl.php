@@ -1504,9 +1504,13 @@ class Otl
 										$mask = (1 << (Indic::INIT));
 										break;
 								}
-								if (!($this->OTLdata[$ptr]['mask'] & $mask)) {
-									continue;
-								}
+								// if (!($this->OTLdata[$ptr]['mask'] & $mask)) {
+								// 	continue;
+								// }
+
+								if (!isset($this->OTLdata[$ptr]) || !isset($this->OTLdata[$ptr + 1]) || !($this->OTLdata[$ptr]['mask'] & $mask)) {
+							        	continue;
+							    	}
 							}
 							// Get rules from font GSUB subtable
 							$shift = $this->_applyGSUBsubtable($lu, $c, $ptr, $currGlyph, $currGID, ($subtable_offset - $this->GSUB_offset), $Type, $Flag, $MarkFilteringSet, $this->GSLuCoverage[$lu][$c], 0, $usetag, $is_old_spec, $tagInt);
